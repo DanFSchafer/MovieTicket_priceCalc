@@ -21,9 +21,13 @@ Ticket.prototype.cost = function() {
 
 }
 
+// jQuery
 $(function() {
   $("#options form").submit(function(event) {
   event.preventDefault();
+
+  $("#final").text("");
+
   var name = $("input:radio[name=movie]:checked").val();
   var age = $("input:radio[name=age]:checked").val();
   var time = $("input:radio[name=time]:checked").val();
@@ -32,7 +36,10 @@ $(function() {
   var newTicket = new Ticket(age, name, time);
   console.log (newTicket);
 
-  newTicket.cost();
-  console.log(newTicket.cost());
-});
+  var cost = newTicket.cost();
+
+  console.log(cost);
+  $("#results").show();
+  $("#final").append("$ " + cost);
+  });
 });
